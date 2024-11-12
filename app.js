@@ -145,7 +145,13 @@ const digitalSkills = {
   // Display Skills
   const displaySkills = () => {
     const listElement = document.getElementById('skills-list');
-    skills.forEach(skill => {
+    digitalSkills.programmingLanguages.concat(
+      digitalSkills.frameworks, 
+      digitalSkills.databases, 
+      digitalSkills.technologies, 
+      digitalSkills.ides, 
+      digitalSkills.others
+    ).forEach(skill => {
       const li = document.createElement('li');
       li.textContent = skill;
       listElement.appendChild(li);
@@ -162,49 +168,11 @@ const digitalSkills = {
     });
   };
   
-// Carousel Logic - Load Images One by One
-let currentIndex = 0;
-const carouselItems = document.querySelectorAll('.carousel-item');
-
-// Initially hide all images
-carouselItems.forEach(item => {
-  item.style.display = 'none';
-});
-
-// Display the first image
-carouselItems[currentIndex].style.display = 'block';
-
-// Function to show the next image
-const showNextImage = () => {
-  // Hide the current image
-  carouselItems[currentIndex].style.display = 'none';
-
-  // Move to the next image, or loop back to the first image
-  currentIndex = (currentIndex + 1) % carouselItems.length;
-
-  // Show the next image
-  carouselItems[currentIndex].style.display = 'block';
-};
-
-// Set interval for auto-scrolling (every 1.5 seconds)
-setInterval(showNextImage, 1500); // 
-
-  
-  // On Page Load
-  window.onload = () => {
+// On Page Load
+window.onload = () => {
     // Display content
     displayProjects();
     displayWorkExperience();
     displaySkills();
     displayReferences();
-  
-    // Set up carousel
-    carouselItems.forEach((item, index) => {
-      if (index !== currentIndex) {
-        item.style.display = 'none';
-      }
-    });
-  
-    setInterval(showNextImage, 2000);  // 2-second interval for carousel
-  };
-  
+};
